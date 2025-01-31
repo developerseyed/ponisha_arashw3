@@ -77,19 +77,19 @@ void TradeForm::show()
     CreateEdit("loss_money", xPosition - 93, yPosition + y_split, 73, 25, 16);
     y_split += 30;
     CreateTextLabel("volume1_tag", xPosition - 10, yPosition + y_split, "level1 volume:");
-    CreateTextLabel("volume1", xPosition - 95, yPosition + y_split, "       1", clrGreen);
+    CreateTextLabel("volume1", xPosition - 95, yPosition + y_split, "       "+(string)baseVolume ,clrGreen);
     y_split += 25;
     CreateTextLabel("volume2_tag", xPosition - 10, yPosition + y_split, "level2 volume:");
-    CreateTextLabel("volume2", xPosition - 95, yPosition + y_split, "       2", clrGreen);
+    CreateTextLabel("volume2", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*2), clrGreen);
     y_split += 25;
     CreateTextLabel("volume3_tag", xPosition - 10, yPosition + y_split, "level3 volume:");
-    CreateTextLabel("volume3", xPosition - 95, yPosition + y_split, "       4", clrGreen);
+    CreateTextLabel("volume3", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*4), clrGreen);
     y_split += 25;
     CreateTextLabel("volume4_tag", xPosition - 10, yPosition + y_split, "level4 volume:");
-    CreateTextLabel("volume4", xPosition - 95, yPosition + y_split, "       8", clrGreen);
+    CreateTextLabel("volume4", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*8), clrGreen);
     y_split += 25;
     CreateTextLabel("volume5_tag", xPosition - 10, yPosition + y_split, "level5 volume:");
-    CreateTextLabel("volume5", xPosition - 95, yPosition + y_split, "       16", clrGreen);
+    CreateTextLabel("volume5", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*16), clrGreen);
     if (isFirst)
     {
         ButtonCreate(0, "minimize", 0, 40, 40, 35, 35, CORNER_RIGHT_UPPER, "~", "Arial", 18, clrWhite, C'8,21,33', clrNONE, false, false, true);
@@ -112,15 +112,6 @@ void TradeForm::DeleteAllObjects()
     ObjectDelete(0, "volume3_tag");
     ObjectDelete(0, "volume4_tag");
     ObjectDelete(0, "volume5_tag");
-    ObjectDelete(0, "be_Pip");
-    ObjectDelete(0, "be_money");
-    ObjectDelete(0, "sl_%");
-    ObjectDelete(0, "sl_Pip");
-    ObjectDelete(0, "sl_money");
-    ObjectDelete(0, "op_sell_limit");
-    ObjectDelete(0, "op_buy_limit");
-    ObjectDelete(0, "op_sell_limit_stop");
-    ObjectDelete(0, "op_buy_limit_stop");
-    ObjectDelete(0, "stop");
-    ObjectDelete(0, "close");
+
 }
+
