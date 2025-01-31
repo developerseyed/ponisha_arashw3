@@ -10,7 +10,7 @@
 input int SL_Pip = 10;
 input double PipValue = 1;
 
-double RiskMoney = 0;
+double RiskMoney = 100;
 double baseVolume = 1;
 struct ExpertLevelsType
 {

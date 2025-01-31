@@ -39,7 +39,8 @@ void OnChartEventApp(const int id,
             levelsCount += 1;
             if (levelsCount == 8)
             {
-                baseVolume = FindBaseVolume(allLevels);
+                baseVolume = MathFloor(100*FindBaseVolume(allLevels))/100;
+                Print(FindBaseVolume(allLevels));
                 levelsCount = 0;
             }
         }

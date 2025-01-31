@@ -22,7 +22,7 @@ int findMinIndexFromIndex(double& levels[], int index)
     double min = 9999999;
     for (int i = index; i < 8; ++i)
     {
-        if (min > levels[index])
+        if (min > levels[i])
         {
             min = levels[index];
             result = i;
@@ -36,7 +36,7 @@ int findMaxIndexFromIndex(double& levels[], int index)
     double max = -1;
     for (int i = index; i < 8; ++i)
     {
-        if (max < levels[index])
+        if (max < levels[i])
         {
             max = levels[index];
             result = i;
