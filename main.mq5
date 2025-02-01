@@ -2,16 +2,18 @@
 #property link "https://www.mql5.com"
 #property version "1.00"
 #property indicator_chart_window
-
+#include "./helper.mq5";
 #include "./calc/index.mq5";
 #include "./display/index.mq5";
 #include "./design/index.mq5";
 #include "./chartEvent/index.mq5";
 input int SL_Pip = 10;
+input int leverage = 1000;
+input int tradeSize = 100000;
 input double PipValue = 1;
 
 double RiskMoney = 100;
-double baseVolume = 1;
+double baseVolume = 0;
 struct ExpertLevelsType
 {
   double SL1;

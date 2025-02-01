@@ -16,7 +16,7 @@ public:
     ~TradeForm();
     void CreateFormContainer();
     void CreateEdit(string name, int xPos, int yPos, int width, int height, int fontSize);
-    void CreateTextLabel(string name, int xPos, int yPos, string text, color clr,int fontSize);
+    void CreateTextLabel(string name, int xPos, int yPos, string text, color clr, int fontSize);
     void CreateButton(string name);
     void CreateButton(string name, int xPos, int yPos, int width, int heigth, string text, int fontSize, color clr, color back_clr);
     void show();
@@ -30,7 +30,7 @@ TradeForm::~TradeForm()
 }
 TradeForm::TradeForm(/* args */)
 {
-    xPosition = 220;
+    xPosition = 275;
     yPosition = 35;
     font_size = 14;
     isFirst = true;
@@ -63,7 +63,7 @@ void TradeForm::show()
     // beType = Pip;
     if (!isFirst)
     {
-        xPosition = minimizeX + 180;
+        xPosition = minimizeX + 235;
         yPosition = minimizeY - 5;
     }
     else
@@ -72,35 +72,44 @@ void TradeForm::show()
         minimizeY = 40;
     }
     CreateFormContainer();
+    xPosition -= 15;
+    yPosition += 15;
+    MyCreateRectangle2(corner, xPosition, yPosition, 200, 200, C'248,141,53');
     int y_split = 10;
-    CreateTextLabel("loss_tag", xPosition - 10, yPosition + y_split, "risk money:",clrWhite,12);
+    CreateTextLabel("loss_tag", xPosition - 10, yPosition + y_split, "risk money:", clrBlack, 12);
     CreateEdit("loss_money", xPosition - 93, yPosition + y_split, 73, 25, 16);
     y_split += 30;
-    CreateTextLabel("volume1_tag", xPosition - 10, yPosition + y_split, "level1 volume:");
-    CreateTextLabel("volume1", xPosition - 95, yPosition + y_split, "       "+(string)baseVolume ,clrGreen);
+    CreateTextLabel("volume1_tag", xPosition - 10, yPosition + y_split, "level1 volume:",clrBlack);
+    CreateTextLabel("volume1", xPosition - 95, yPosition + y_split, "       " + (string)baseVolume, clrGreen);
     y_split += 25;
-    CreateTextLabel("volume2_tag", xPosition - 10, yPosition + y_split, "level2 volume:");
-    CreateTextLabel("volume2", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*2), clrGreen);
+    CreateTextLabel("volume2_tag", xPosition - 10, yPosition + y_split, "level2 volume:",clrBlack);
+    CreateTextLabel("volume2", xPosition - 95, yPosition + y_split, "       " + (string)(baseVolume * 2), clrGreen);
     y_split += 25;
-    CreateTextLabel("volume3_tag", xPosition - 10, yPosition + y_split, "level3 volume:");
-    CreateTextLabel("volume3", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*4), clrGreen);
+    CreateTextLabel("volume3_tag", xPosition - 10, yPosition + y_split, "level3 volume:",clrBlack);
+    CreateTextLabel("volume3", xPosition - 95, yPosition + y_split, "       " + (string)(baseVolume * 4), clrGreen);
     y_split += 25;
-    CreateTextLabel("volume4_tag", xPosition - 10, yPosition + y_split, "level4 volume:");
-    CreateTextLabel("volume4", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*8), clrGreen);
+    CreateTextLabel("volume4_tag", xPosition - 10, yPosition + y_split, "level4 volume:",clrBlack);
+    CreateTextLabel("volume4", xPosition - 95, yPosition + y_split, "       " + (string)(baseVolume * 8), clrGreen);
     y_split += 25;
-    CreateTextLabel("volume5_tag", xPosition - 10, yPosition + y_split, "level5 volume:");
-    CreateTextLabel("volume5", xPosition - 95, yPosition + y_split, "       "+(string)(baseVolume*16), clrGreen);
+    CreateTextLabel("volume5_tag", xPosition - 10, yPosition + y_split, "level5 volume:",clrBlack);
+    CreateTextLabel("volume5", xPosition - 95, yPosition + y_split, "       " + (string)(baseVolume * 16), clrGreen);
     if (isFirst)
     {
         ButtonCreate(0, "minimize", 0, 40, 40, 35, 35, CORNER_RIGHT_UPPER, "~", "Arial", 18, clrWhite, C'8,21,33', clrNONE, false, false, true);
     }
-
+    y_split += 30;
+    if (IsMarginEnough())
+    {
+        CreateTextLabel("margin_call_alarm", xPosition - 10, yPosition + y_split, "free margin is not enough", clrRed,12);
+    }
     isFirst = false;
 }
 void TradeForm::DeleteAllObjects()
 {
+    ObjectDelete(0, "margin_call_alarm");
     ObjectDelete(0, "loss_tag");
     ObjectDelete(0, "FormContainer");
+    ObjectDelete(0, "FormContainer2");
     ObjectDelete(0, "loss_money");
     ObjectDelete(0, "volume1");
     ObjectDelete(0, "volume2");
@@ -112,6 +121,4 @@ void TradeForm::DeleteAllObjects()
     ObjectDelete(0, "volume3_tag");
     ObjectDelete(0, "volume4_tag");
     ObjectDelete(0, "volume5_tag");
-
 }
-
