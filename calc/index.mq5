@@ -2,15 +2,17 @@
 
 double CalcVolume()
 {
-
+    double PipValue =  myPipValue(1);
     return RiskMoney / (PipValue * (mainLevels.SL1 + 2 * mainLevels.SL2 + 4 * mainLevels.SL3 + 8 * mainLevels.SL4 + 16 * mainLevels.SL5));
 }
 
 bool IsMarginEnough()
 {
     double price = myAsk();
-    double sumVolume = 31 * baseVolume;
+    double tradeSize = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+    double sumVolume = 31 * baseVolume*tradeSize;
     double margin = (price * sumVolume) / leverage;
+
     double equity = AccountInfoDouble(ACCOUNT_EQUITY);
 
     return equity > margin;

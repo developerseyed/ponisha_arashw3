@@ -9,7 +9,7 @@ bool HLineCreate(const long            chart_ID=0,        // chart's ID
                  const bool            selection=false,    // highlight to move
                  const bool            hidden=true,       // hidden in the object list
                  const long            z_order=0)         // priority for mouse click
-  {
+{
 //--- if the price is not set, set it at the current Bid price level
    if(!price)
       price=SymbolInfoDouble(Symbol(),SYMBOL_BID);

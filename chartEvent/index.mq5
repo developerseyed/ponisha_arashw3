@@ -33,15 +33,18 @@ void OnChartEventApp(const int id,
     {
         string objName = sparam;
         int index = StringFind(objName, "Draw", 0);
-        if (index == 0)
+        bool isTrendLine = ObjectGetInteger(0, objName, OBJPROP_TYPE, 0) == OBJ_TREND;
+
+        if (index == 0 && isTrendLine)
         {
             allLevels[levelsCount] = ObjectGetDouble(0, objName, OBJPROP_PRICE, 0);
             levelsCount += 1;
             if (levelsCount == 8)
             {
-                baseVolume = MathFloor(100*FindBaseVolume(allLevels))/100;
-                Print(FindBaseVolume(allLevels));
                 levelsCount = 0;
+                baseVolume = FindBaseVolume(allLevels);
+                Print("base volume is ", baseVolume);
+                mainForm.update();
             }
         }
     }

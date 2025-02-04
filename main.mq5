@@ -1,5 +1,5 @@
-#property copyright "Copyright 2025, MetaQuotes Ltd."
-#property link "https://www.mql5.com"
+#property copyright "seyedmohadihoseini@gmail.com"
+#property link "https://hadi.s4r4.com"
 #property version "1.00"
 #property indicator_chart_window
 #include "./helper.mq5";
@@ -7,11 +7,11 @@
 #include "./display/index.mq5";
 #include "./design/index.mq5";
 #include "./chartEvent/index.mq5";
+#include "./test.mq5";
+#include <Trade\AccountInfo.mqh>;
+CAccountInfo AccInfo;
 input int SL_Pip = 10;
-input int leverage = 1000;
-input int tradeSize = 100000;
-input double PipValue = 1;
-
+long leverage = AccInfo.Leverage();
 double RiskMoney = 100;
 double baseVolume = 0;
 struct ExpertLevelsType
@@ -26,15 +26,13 @@ TradeForm mainForm;
 ExpertLevelsType mainLevels;
 int OnInit()
 {
-
   //--- indicator buffers mapping
-
   mainForm.show();
   ChartRedraw(0);
   Sleep(1000);
-
   ChartSetInteger(0, CHART_EVENT_OBJECT_CREATE, true);
   //---
+  MainTest();
   return (INIT_SUCCEEDED);
 }
 
@@ -57,4 +55,10 @@ void OnChartEvent(const int id, const long &lparam, const double &dparam, const 
 {
   OnChartEventApp(id, lparam, dparam, sparam);
   ObjectSetString(0, "loss_money", OBJPROP_TEXT, (string)RiskMoney);
+}
+void OnDeinit(const int reason)
+{
+  mainForm.DeleteAllObjects();
+  ChartRedraw(0);
+  Sleep(100);
 }
